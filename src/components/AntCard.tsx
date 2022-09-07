@@ -1,11 +1,11 @@
 import { Card } from "antd";
 
-function AntCard() {
+const AntCard = () => {
     return (
         <Card
             size="small"
             title="Small size card"
-            extra={<a href="#">More</a>}
+            // extra={<a href="#">More</a>}
             style={{ width: 300 }}
         >
             <p>Card content</p>
@@ -13,6 +13,6 @@ function AntCard() {
             <p>Card content</p>
         </Card>
     );
-}
+};
 
 export default AntCard;

@@ -11,6 +11,7 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "antd": "^4.23.0",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -65,6 +66,5 @@
     "prettier-eslint": "^13.0.0",
     "prettier-eslint-cli": "^5.0.1",
     "redux-devtools-extension": "^2.13.9"
-}
-
+  }
 }
