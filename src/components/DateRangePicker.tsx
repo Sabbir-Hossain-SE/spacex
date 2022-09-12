@@ -13,7 +13,7 @@ const onChange: RangePickerProps["onChange"] = (dates, dateStrings) => {
     }
 };
 
-const DateRangePicker = () => {
+const DateRangePicker: React.FC = () => {
     return (
         <RangePicker
             ranges={{

@@ -2,7 +2,7 @@ import { Layout, Menu } from "antd";
 
 const { Header } = Layout;
 
-const AntHeader = () => {
+const AntHeader: React.FC = () => {
     return (
         <Header>
             <div className="logo" />

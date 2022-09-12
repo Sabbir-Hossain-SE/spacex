@@ -1,6 +1,7 @@
 import { Button } from "antd";
+import { AntButtonProps } from "../@type/components";
 
-const AntButton = ({ title = "Button", handleClick = () => {} }) => {
+const AntButton: React.FC<AntButtonProps> = ({ title, handleClick }) => {
     return (
         <Button onClick={handleClick} type="primary">
             {title}

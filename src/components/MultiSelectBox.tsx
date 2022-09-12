@@ -12,7 +12,7 @@ const handleChange = (value: string[]) => {
     console.log(`selected ${value}`);
 };
 
-const MultiSelectBox = () => {
+const MultiSelectBox: React.FC = () => {
     return (
         <Select
             mode="multiple"
