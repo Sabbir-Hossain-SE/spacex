@@ -19,7 +19,7 @@ const filterSlice = createSlice({
             state.otherFiltration = action.payload;
         },
 
-        resetAllFiltration: (state, action) => {
+        resetAllFiltration: (state) => {
             state.searchKey = "";
             state.otherFiltration = [];
         }

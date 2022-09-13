@@ -31,7 +31,7 @@ const MultiSelectBox: React.FC = () => {
             mode="multiple"
             allowClear
             style={{ minWidth: "280px" }}
-            placeholder="Please select"
+            placeholder="Please select option for filter"
             onChange={handleChange}
         >
             {children}

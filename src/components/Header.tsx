@@ -1,13 +1,19 @@
 import { Col, Image, Row, Space } from "antd";
+import { useDispatch } from "react-redux";
 import logo from "../assets/images/spacex-logo-png-transparent.png";
+import { resetAllFiltration } from "../stateManagement/features/launch/filterSlice";
 import AntButton from "./AntButton";
 import MultiSelectBox from "./MultiSelectBox";
 import SearchBar from "./SearchBar";
 
-const Header = () => {
-    const customColStyle = { width: "calc(100% - 40%)", padding: "20xp 10%" };
+const customColStyle = { width: "calc(100% - 40%)", padding: "20xp 10%" };
 
-    const handleResetAction = () => {};
+const Header = () => {
+    const dispatch = useDispatch();
+
+    const handleResetAction = () => {
+        dispatch(resetAllFiltration());
+    };
     return (
         <Row justify="center" style={{ height: "175px" }}>
             <Col style={customColStyle}>
