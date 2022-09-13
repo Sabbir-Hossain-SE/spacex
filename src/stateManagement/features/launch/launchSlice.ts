@@ -9,18 +9,22 @@ export const launchSlice = createApi({
     }),
     tagTypes: ["Launches", "Launch"],
     endpoints: (builder) => ({
-        getLaunches: builder.query<[], object>({
+        getLaunches: builder.query<{ apiResponse: []; totalCount: number }, object>({
             query: (params: GetLaunchesParamProps) => {
                 return getQueryString(params);
             },
 
-            transformResponse(apiResponse: [], meta: FetchBaseQueryMeta | undefined): [] {
-                const totalCount = meta?.response?.headers.get("spacex-api-count");
+            transformResponse(
+                apiResponse: [],
+                meta: FetchBaseQueryMeta | undefined
+            ): { apiResponse: []; totalCount: number } {
+                let totalCount = 0;
+                totalCount = Number(meta?.response?.headers.get("spacex-api-count"));
                 localStorage.setItem("totalCount", JSON.stringify(totalCount));
                 if (apiResponse && apiResponse?.length > 0) {
-                    return apiResponse;
+                    return { apiResponse, totalCount };
                 }
-                return [];
+                return { apiResponse: [], totalCount };
             },
             providesTags: ["Launches"]
         }),

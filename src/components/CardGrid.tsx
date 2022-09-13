@@ -2,7 +2,6 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-underscore-dangle */
 import { Alert, Col, Grid, Row } from "antd";
-import { useEffect, useState } from "react";
 import { useAppSelector } from "../stateManagement/app/hooks";
 import { useGetLaunchesQuery } from "../stateManagement/features/launch/launchSlice";
 import AntCard from "./AntCard";
@@ -15,7 +14,7 @@ const CardGrid: React.FC = () => {
     const { currentPage, pageLimit } = useAppSelector((state) => state.pagination);
     const { searchKey, otherFiltration } = useAppSelector((state) => state.filter);
     const screens = useBreakpoint();
-    const [skip, setSkip] = useState(true);
+
     const { data, isLoading, isError, isSuccess, error } = useGetLaunchesQuery({
         offset: currentPage,
         limit: pageLimit,
@@ -24,10 +23,6 @@ const CardGrid: React.FC = () => {
         order: "desc",
         otherFiltration
     });
-
-    useEffect(() => {
-        setSkip(true);
-    }, [otherFiltration]);
 
     let content;
 
@@ -38,7 +33,7 @@ const CardGrid: React.FC = () => {
         content = <Alert message="Generate Network Error!" type="error" />;
     }
     if (isSuccess) {
-        content = data.map((launch, index) => (
+        content = data.apiResponse.map((launch, index) => (
             <Col
                 key={index}
                 className="gutter-row"
