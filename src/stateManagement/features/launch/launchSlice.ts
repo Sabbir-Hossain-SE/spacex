@@ -1,12 +1,7 @@
 import { createApi, fetchBaseQuery, FetchBaseQueryMeta } from "@reduxjs/toolkit/query/react";
+import { GetLaunchesParamProps } from "../../../@type/slice";
+import getQueryString from "../../../utils/getQueryString";
 
-type GetLaunchesParamProps = {
-    offset: number;
-    limit: number;
-    searchKey: string | null;
-    sort: string | null;
-    order: string | null;
-};
 export const launchSlice = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({
@@ -15,43 +10,8 @@ export const launchSlice = createApi({
     tagTypes: ["Launches", "Launch"],
     endpoints: (builder) => ({
         getLaunches: builder.query<[], object>({
-            query: ({ offset, limit, searchKey, sort, order }: GetLaunchesParamProps) => {
-                let queryString = "?id=true";
-                if (searchKey) {
-                    if (queryString !== "") {
-                        queryString += `&rocket_name=${searchKey}`;
-                    } else {
-                        queryString += `?rocket_name=${searchKey}`;
-                    }
-                }
-
-                if (offset) {
-                    if (queryString !== "") {
-                        queryString += `&offset=${offset}`;
-                    } else {
-                        queryString += `?offset=${offset}`;
-                    }
-                }
-
-                if (limit) {
-                    if (queryString !== "") {
-                        queryString += `&limit=${limit}`;
-                    } else {
-                        queryString += `?limit=${limit}`;
-                    }
-                }
-
-                if (sort && order) {
-                    if (queryString !== "") {
-                        queryString += `&sort=${sort}&order=${order}`;
-                    } else {
-                        queryString += `?sort=${sort}&order=${order}`;
-                    }
-                }
-
-                return {
-                    url: queryString
-                };
+            query: (params: GetLaunchesParamProps) => {
+                return getQueryString(params);
             },
 
             transformResponse(apiResponse: [], meta: FetchBaseQueryMeta | undefined): [] {

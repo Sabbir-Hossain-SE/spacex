@@ -11,8 +11,8 @@ const customRowStyle: React.CSSProperties = {};
 const { useBreakpoint } = Grid;
 
 const CardGrid: React.FC = () => {
-    const { currentPage, pageLimit, totalItem } = useAppSelector((state) => state.pagination);
-    const { searchKey } = useAppSelector((state) => state.filter);
+    const { currentPage, pageLimit } = useAppSelector((state) => state.pagination);
+    const { searchKey, otherFiltration } = useAppSelector((state) => state.filter);
     const screens = useBreakpoint();
 
     const { data, isLoading, isError, isSuccess, error } = useGetLaunchesQuery({
@@ -20,7 +20,8 @@ const CardGrid: React.FC = () => {
         limit: pageLimit,
         searchKey,
         sort: "flight_number",
-        order: "desc"
+        order: "desc",
+        otherFiltration
     });
 
     let content;

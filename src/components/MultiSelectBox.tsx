@@ -1,5 +1,7 @@
 import { Select } from "antd";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { setFiltration } from "../stateManagement/features/launch/filterSlice";
 
 const { Option } = Select;
 const filterItems = [
@@ -18,11 +20,12 @@ for (i = 0; i < length; i++) {
     children.push(<Option key={filterItems[i].toString()}>{filterItems[i]}</Option>);
 }
 
-const handleChange = (value: string[]) => {
-    console.log(`selected ${value}`);
-};
-
 const MultiSelectBox: React.FC = () => {
+    const dispatch = useDispatch();
+
+    const handleChange = (value: string[]) => {
+        dispatch(setFiltration(value));
+    };
     return (
         <Select
             mode="multiple"

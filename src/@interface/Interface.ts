@@ -3,8 +3,3 @@ export interface PaginationState {
     pageLimit: number;
     totalItem: number;
 }
-
-export interface FilterInitialState {
-    searchKey: string;
-    otherFiltration: [];
-}

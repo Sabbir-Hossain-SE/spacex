@@ -49,6 +49,7 @@ export type Launch = {
     links?: Links;
     ships?: Ships;
     details?: string;
+    upcoming?: boolean;
 };
 
 export type AntCardProps = {

@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from "@reduxjs/toolkit";
-import { FilterInitialState } from "../../../@interface/Interface";
+import { FilterInitialState } from "../../../@interface/slice";
 
 const initialState: FilterInitialState = {
     searchKey: "",
@@ -16,7 +16,7 @@ const filterSlice = createSlice({
             state.searchKey = action.payload;
         },
         setFiltration: (state, action) => {
-            state.searchKey = action.payload;
+            state.otherFiltration = action.payload;
         },
 
         resetAllFiltration: (state, action) => {

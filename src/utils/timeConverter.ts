@@ -21,3 +21,32 @@ export const formateDate = (date: Date) => {
     )}-${`0${date.getUTCDate()}`.slice(-2)}`;
     return dateString;
 };
+
+export const getLastYearStartEnd = (): { startDate: string; endDate: string } => {
+    const date = new Date();
+    const startDate = formateDate(new Date(date.getFullYear() - 1, 1));
+    const endDate = formateDate(new Date(date.getFullYear(), 0));
+
+    return { startDate, endDate };
+};
+
+export const getLastMonthStartEnd = (): { startDate: string; endDate: string } => {
+    const date = new Date();
+    const startDate = formateDate(new Date(date.getFullYear(), date.getMonth() - 1, 1));
+    const endDate = formateDate(new Date(date.getFullYear(), date.getMonth(), 0));
+
+    return { startDate, endDate };
+};
+
+export const getLastWeekStartEnd = (): { startDate: string; endDate: string } => {
+    const date = new Date();
+    const endDate = formateDate(
+        new Date(
+            date.setTime(date.getTime() - (date.getDay() ? date.getDay() : 7) * 24 * 60 * 60 * 1000)
+        )
+    );
+
+    const startDate = formateDate(new Date(date.setTime(date.getTime() - 6 * 24 * 60 * 60 * 1000)));
+
+    return { startDate, endDate };
+};

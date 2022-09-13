@@ -1,11 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Col, Pagination, PaginationProps, Row } from "antd";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useAppSelector } from "../stateManagement/app/hooks";
 import { setPagination } from "../stateManagement/features/launch/paginationSlice";
 
 const AntPagination: React.FC = () => {
     const dispatch = useDispatch();
     const [current, setCurrent] = useState<number>(1);
+    const { searchKey, otherFiltration } = useAppSelector((state) => state.filter);
     const totalCount = JSON.parse(localStorage.getItem("totalCount") || "");
 
     const onChange: PaginationProps["onChange"] = (page, limit) => {
