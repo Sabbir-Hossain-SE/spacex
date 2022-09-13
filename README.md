@@ -11,6 +11,11 @@ Use yarn to install all dependencies
 
 Install Eslit & Prettier to VS Code.
 
+### Step 3
+
+To run the project use the command.
+"yarn start"
+
 ### Technology Stack & Packages
 
 1. React.js
