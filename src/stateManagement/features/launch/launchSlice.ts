@@ -22,7 +22,6 @@ export const launchSlice = createApi({
                 }
                 return [];
             },
-            keepUnusedDataFor: 600,
             providesTags: ["Launches"]
         }),
         getLaunch: builder.query<object, number>({

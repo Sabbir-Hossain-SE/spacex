@@ -9,9 +9,11 @@ const AntPagination: React.FC = () => {
     const dispatch = useDispatch();
     const [current, setCurrent] = useState<number>(1);
     const { searchKey, otherFiltration } = useAppSelector((state) => state.filter);
-    const totalCount = JSON.parse(localStorage.getItem("totalCount") || "");
+    let totalCount = JSON.parse(localStorage.getItem("totalCount") || "");
+    console.log(totalCount);
 
     const onChange: PaginationProps["onChange"] = (page, limit) => {
+        totalCount = JSON.parse(localStorage.getItem("totalCount") || "");
         dispatch(setPagination({ page, limit }));
         setCurrent(page);
     };
