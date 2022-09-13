@@ -10,7 +10,7 @@ const App: React.FC = () => {
     const customStyle = {
         padding: "24px 24px",
         backgroundColor: "#FAFAFB",
-        height: md || lg || xl || xxl ? "100vh" : "auto"
+        minHeight: "100vh"
     };
 
     return (

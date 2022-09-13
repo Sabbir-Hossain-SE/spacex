@@ -6,35 +6,23 @@ import { useAppSelector } from "../stateManagement/app/hooks";
 import { useGetLaunchesQuery } from "../stateManagement/features/launch/launchSlice";
 import AntCard from "./AntCard";
 
-const customRowStyle: React.CSSProperties = { height: "calc(100% - 220px)" };
+const customRowStyle: React.CSSProperties = {};
 
 const { useBreakpoint } = Grid;
 
 const CardGrid: React.FC = () => {
     const { currentPage, pageLimit, totalItem } = useAppSelector((state) => state.pagination);
+    const { searchKey } = useAppSelector((state) => state.filter);
     const screens = useBreakpoint();
-    // const dispatch = useAppDispatch();
-    console.log(screens);
 
-    const {
-        data: launches,
-        isLoading,
-        isError,
-        isSuccess,
-        error
-    } = useGetLaunchesQuery({
+    const { data, isLoading, isError, isSuccess, error } = useGetLaunchesQuery({
         offset: currentPage,
         limit: pageLimit,
-        searchKey: "",
+        searchKey,
         sort: "flight_number",
         order: "desc"
     });
-    // console.log(currentPage, pageLimit, totalItem, "cu");
-    // console.log(launches);
 
-    // useEffect(() => {
-    //     dispatch(setTotalItem(launches?.length));
-    // }, [dispatch, launches]);
     let content;
 
     if (isLoading) {
@@ -44,16 +32,16 @@ const CardGrid: React.FC = () => {
         content = <div>error...</div>;
     }
     if (isSuccess) {
-        content = launches.map((launch, index) => (
+        content = data.map((launch, index) => (
             <Col
                 key={index}
                 className="gutter-row"
-                xs={{ span: 12 }}
-                md={{ span: 8 }}
+                xs={{ span: 24 }}
+                sm={{ span: 12 }}
+                md={{ span: 12 }}
                 lg={{ span: 8 }}
-                xl={{ span: 6 }}
+                xl={{ span: 8 }}
                 xxl={{ span: 6 }}
-                // style={customColumnStyle}
             >
                 <AntCard launch={launch} />
             </Col>
@@ -62,6 +50,7 @@ const CardGrid: React.FC = () => {
 
     return (
         <Row
+            wrap
             gutter={
                 screens.lg && screens.xl && screens.xxl
                     ? [24, 30]

@@ -4,21 +4,18 @@ import { PaginationState } from "../../../@interface/Interface";
 
 const initialState: PaginationState = {
     currentPage: 1,
-    pageLimit: 10,
+    pageLimit: 12,
     totalItem: 0
 };
 
 // create slice
 const paginationSlice = createSlice({
-    name: "filtration",
+    name: "pagination",
     initialState,
     reducers: {
-        pageSelected: (state, action) => {
-            state.currentPage = action.payload;
-        },
-
-        setPageLimit: (state, action) => {
-            state.pageLimit = action.payload;
+        setPagination: (state, action) => {
+            state.currentPage = action.payload.page;
+            state.pageLimit = action.payload.limit;
         },
 
         setTotalItem: (state, action) => {
@@ -34,5 +31,4 @@ const paginationSlice = createSlice({
 });
 
 export default paginationSlice.reducer;
-export const { setTotalItem, resetPaginationParams, pageSelected, setPageLimit } =
-    paginationSlice.actions;
+export const { setTotalItem, resetPaginationParams, setPagination } = paginationSlice.actions;

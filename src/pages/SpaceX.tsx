@@ -11,7 +11,7 @@ const SpaceX: React.FC = () => {
     const { xs, sm, md, lg, xl, xxl } = screens;
     const customContainerStyle: React.CSSProperties = {
         height: "100%",
-        margin: xl || xxl ? "0 250px" : lg ? "0 80px" : "0"
+        margin: xxl ? "0 240px" : xl ? "0 160px" : lg ? "0 80px" : "0"
     };
     return (
         <div className="cards_container" style={customContainerStyle}>

@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery, FetchBaseQueryMeta } from "@reduxjs/toolkit/query/react";
 
 type GetLaunchesParamProps = {
     offset: number;
@@ -7,6 +7,19 @@ type GetLaunchesParamProps = {
     sort: string | null;
     order: string | null;
 };
+
+// export const transformResponse = async ({ data, headers }): Promise<any> => {
+//     const count = parseInt(headers.get("X-total-count"), 10);
+
+//     if (!Number.isNaN(count)) {
+//         return {
+//             count,
+//             searchResults: data
+//         };
+//     }
+
+//     return data;
+// };
 
 export const launchSlice = createApi({
     reducerPath: "api",
@@ -50,7 +63,18 @@ export const launchSlice = createApi({
                     }
                 }
 
-                return queryString;
+                return {
+                    url: queryString
+                };
+            },
+
+            transformResponse(apiResponse: [], meta: FetchBaseQueryMeta | undefined): [] {
+                const totalCount = meta?.response?.headers.get("spacex-api-count");
+                localStorage.setItem("totalCount", JSON.stringify(totalCount));
+                if (apiResponse && apiResponse?.length > 0) {
+                    return apiResponse;
+                }
+                return [];
             },
             keepUnusedDataFor: 600,
             providesTags: ["Launches"]

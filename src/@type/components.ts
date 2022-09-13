@@ -41,10 +41,11 @@ export type Links = {
 export type Launch = {
     _id?: string;
     flight_number?: number;
-    launch_date_utc?: string;
+    launch_date_utc: string;
     rocket?: Rocket;
     launch_site?: Site;
     launch_success?: boolean;
+    mission_name?: string;
     links?: Links;
     ships?: Ships;
     details?: string;

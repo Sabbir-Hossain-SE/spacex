@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
+import filterReducer from "../features/launch/filterSlice";
 import { launchSlice } from "../features/launch/launchSlice";
 import paginationReducer from "../features/launch/paginationSlice";
 
 export const store = configureStore({
     reducer: {
         [launchSlice.reducerPath]: launchSlice.reducer,
-        pagination: paginationReducer
+        pagination: paginationReducer,
+        filter: filterReducer
     },
     middleware: (getDefaultMiddleWares) => getDefaultMiddleWares().concat(launchSlice.middleware)
 });
