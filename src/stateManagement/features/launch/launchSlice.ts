@@ -7,20 +7,6 @@ type GetLaunchesParamProps = {
     sort: string | null;
     order: string | null;
 };
-
-// export const transformResponse = async ({ data, headers }): Promise<any> => {
-//     const count = parseInt(headers.get("X-total-count"), 10);
-
-//     if (!Number.isNaN(count)) {
-//         return {
-//             count,
-//             searchResults: data
-//         };
-//     }
-
-//     return data;
-// };
-
 export const launchSlice = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({
@@ -33,9 +19,9 @@ export const launchSlice = createApi({
                 let queryString = "?id=true";
                 if (searchKey) {
                     if (queryString !== "") {
-                        queryString += `&q=${searchKey}`;
+                        queryString += `&rocket_name=${searchKey}`;
                     } else {
-                        queryString += `?q=${searchKey}`;
+                        queryString += `?rocket_name=${searchKey}`;
                     }
                 }
 

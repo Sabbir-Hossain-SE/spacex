@@ -2,10 +2,20 @@ import { Select } from "antd";
 import React from "react";
 
 const { Option } = Select;
-
+const filterItems = [
+    "Last Month",
+    "Last Week",
+    "Last Year",
+    "Upcoming launch",
+    "Successful Launches",
+    "Collapsed Launches"
+];
 const children: React.ReactNode[] = [];
-for (let i = 10; i < 36; i++) {
-    children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
+const { length } = filterItems;
+
+let i = 0;
+for (i = 0; i < length; i++) {
+    children.push(<Option key={filterItems[i].toString()}>{filterItems[i]}</Option>);
 }
 
 const handleChange = (value: string[]) => {
@@ -17,9 +27,8 @@ const MultiSelectBox: React.FC = () => {
         <Select
             mode="multiple"
             allowClear
-            style={{ width: "100%" }}
+            style={{ minWidth: "280px" }}
             placeholder="Please select"
-            defaultValue={["a10", "c12"]}
             onChange={handleChange}
         >
             {children}

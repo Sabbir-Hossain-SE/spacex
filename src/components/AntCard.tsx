@@ -41,7 +41,7 @@ const AntCard: React.FC<AntCardProps> = ({ launch }) => {
                         Mission: {launch?.mission_name}
                     </Text>
                     <Text
-                        style={ellipsis ? { width: 100 } : undefined}
+                        style={ellipsis ? { width: 130 } : undefined}
                         ellipsis={ellipsis ? { tooltip: launch?.rocket?.rocket_name } : false}
                     >
                         Rocket: {launch?.rocket?.rocket_name}
